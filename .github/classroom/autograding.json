@@ -1,0 +1,104 @@
+{
+  "tests": [
+     {
+      "name": "PA4a testShift",
+      "setup": "",
+      "run": "mvn test -q \"-Dtest=PA4aTestCase#testShift\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+     },
+     {
+      "name": "PA4a testFindShift",
+      "setup": "",
+      "run": "mvn test -q \"-Dtest=PA4aTestCase#testFindShift\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+     },
+     {
+      "name": "PA4a testProgram",
+      "setup": "",
+      "run": "mvn test -q \"-Dtest=PA4aTestCase#testProgram\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 5
+     },
+     {
+      "name": "PA4b testPoint2D",
+      "setup": "",
+      "run": "mvn test -q \"-Dtest=PA4bTestCase#testPoint2D\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 5
+     },
+     {
+      "name": "PA4b testRectangle",
+      "setup": "",
+      "run": "mvn test -q \"-Dtest=PA4bTestCase#testRectangle\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 15
+     },
+     {
+      "name": "PA4b testTriangle",
+      "setup": "",
+      "run": "mvn test -q \"-Dtest=PA4bTestCase#testTriangle\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 15
+     },
+     {
+      "name": "PA4b testCSV",
+      "setup": "",
+      "run": "mvn test -q \"-Dtest=PA4bTestCase#testCSV\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+     },
+     {
+      "name": "PA4b testProgram",
+      "setup": "",
+      "run": "mvn test -q \"-Dtest=PA4bTestCase#testProgram\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 5
+     },
+     {
+      "name": "PA4c testMethod",
+      "setup": "",
+      "run": "mvn test -q \"-Dtest=PA4cTestCase#testMethod\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+     },
+     {
+      "name": "PA4c testProgram",
+      "setup": "",
+      "run": "mvn test -q \"-Dtest=PA4cTestCase#testProgram\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 15
+     }
+  ]
+}
