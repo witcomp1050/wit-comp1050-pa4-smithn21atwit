@@ -64,6 +64,13 @@ public class PA4aTestCase extends TestCase {
 		System.setOut(null);
 	}
 	
+    private void _testShift1(char c, int n, char shifted) {
+        char result = ' ';
+        try {
+            result = Shifter.shift1(c, n);
+        } catch (ExitException ex) {}
+        assertEquals(shifted, result);
+    }
 	private void _testShift(String s, int[] n, String[] eShift) {
 		Shifter shifter;
 		
@@ -99,6 +106,52 @@ public class PA4aTestCase extends TestCase {
 		
 		Assert.assertArrayEquals(e, result);
 	}
+	
+    public void testShift1() {
+        _testShift1(' ', -2, ' ');
+        _testShift1(' ', -1, ' ');
+        _testShift1(' ', 0, ' ');
+        _testShift1(' ', 1, ' ');
+        _testShift1(' ', 2, ' ');
+        _testShift1(' ', 10, ' ');
+        _testShift1(' ', 25, ' ');
+        _testShift1(' ', 26, ' ');
+        _testShift1(' ', 27, ' ');
+        _testShift1(' ', 100, ' ');
+
+        _testShift1('!', -2, '!');
+        _testShift1('!', -1, '!');
+        _testShift1('!', 0, '!');
+        _testShift1('!', 1, '!');
+        _testShift1('!', 2, '!');
+        _testShift1('!', 10, '!');
+        _testShift1('!', 25, '!');
+        _testShift1('!', 26, '!');
+        _testShift1('!', 27, '!');
+        _testShift1('!', 100, '!');
+
+        _testShift1('a', -2, 'y');
+        _testShift1('a', -1, 'z');
+        _testShift1('a', 0, 'a');
+        _testShift1('a', 1, 'b');
+        _testShift1('a', 2, 'c');
+        _testShift1('a', 10, 'k');
+        _testShift1('a', 25, 'z');
+        _testShift1('a', 26, 'a');
+        _testShift1('a', 27, 'b');
+        _testShift1('a', 100, 'w');
+
+        _testShift1('b', -2, 'z');
+        _testShift1('b', -1, 'a');
+        _testShift1('b', 0, 'b');
+        _testShift1('b', 1, 'c');
+        _testShift1('b', 2, 'd');
+        _testShift1('b', 10, 'l');
+        _testShift1('b', 25, 'a');
+        _testShift1('b', 26, 'b');
+        _testShift1('b', 27, 'c');
+        _testShift1('b', 100, 'x');
+    }
 	
 	public void testShift() {
 		_testShift("", 
