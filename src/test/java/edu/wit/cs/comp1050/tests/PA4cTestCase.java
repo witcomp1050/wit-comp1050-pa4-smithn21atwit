@@ -14,6 +14,7 @@ import org.junit.jupiter.api.*;
 
 import edu.wit.cs.comp1050.PA4c;
 
+@Timeout(1)
 public class PA4cTestCase {
 	
 	@SuppressWarnings("serial")

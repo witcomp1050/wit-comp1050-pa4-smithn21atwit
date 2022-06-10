@@ -12,6 +12,7 @@ import org.junit.jupiter.api.*;
 import edu.wit.cs.comp1050.PA4a;
 import edu.wit.cs.comp1050.Shifter;
 
+@Timeout(1)
 public class PA4aTestCase {
 	
 	private static final String ERR_USAGE = "Please supply correct inputs: <encrypted string> <substring>";

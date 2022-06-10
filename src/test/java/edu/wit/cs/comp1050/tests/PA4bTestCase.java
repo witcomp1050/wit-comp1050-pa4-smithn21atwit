@@ -15,6 +15,7 @@ import edu.wit.cs.comp1050.Rectangle;
 import edu.wit.cs.comp1050.Shape2D;
 import edu.wit.cs.comp1050.Triangle;
 
+@Timeout(1)
 public class PA4bTestCase {
 	
 	private static final String ERR_USAGE = "Please supply correct inputs: color x1 y1 x2 y2 x3 y3";
