@@ -1,17 +1,18 @@
 
 package edu.wit.cs.comp1050.tests;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.security.Permission;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.*;
 
 import edu.wit.cs.comp1050.PA4a;
 import edu.wit.cs.comp1050.Shifter;
-import junit.framework.TestCase;
 
-public class PA4aTestCase extends TestCase {
+public class PA4aTestCase {
 	
 	private static final String ERR_USAGE = "Please supply correct inputs: <encrypted string> <substring>";
 	private static final String ERR_NONE = "No valid shifts found.";
@@ -31,18 +32,16 @@ public class PA4aTestCase extends TestCase {
         public void checkExit(int status) { super.checkExit(status); throw new ExitException(); }
     }
 	
-	@Override
-    protected void setUp() throws Exception 
+	@BeforeEach
+    public void setUp() throws Exception 
     {
-        super.setUp();
         System.setSecurityManager(new NoExitSecurityManager());
     }
 	
-	@Override
-    protected void tearDown() throws Exception 
+	@AfterEach
+    public void tearDown() throws Exception 
     {
         System.setSecurityManager(null);
-        super.tearDown();
     }
 	
 	private void _test(String[] a, String msg) {
@@ -104,9 +103,10 @@ public class PA4aTestCase extends TestCase {
 		} catch (ExitException ex) {}
 		assertNotNull(result);
 		
-		Assert.assertArrayEquals(e, result);
+		assertArrayEquals(e, result);
 	}
 	
+	@Test
     public void testShift1() {
         _testShift1(' ', -2, ' ');
         _testShift1(' ', -1, ' ');
@@ -153,6 +153,7 @@ public class PA4aTestCase extends TestCase {
         _testShift1('b', 100, 'x');
     }
 	
+    @Test
 	public void testShift() {
 		_testShift("", 
 			new int[] {-2, -1, 0, 1, 2, 10, 25, 26, 27, 100}, 
@@ -233,6 +234,7 @@ public class PA4aTestCase extends TestCase {
 		);
 	}
 	
+	@Test
 	public void testFindShift() {
 		final int[] ALL = {
 			0, 1, 2, 3, 4, 5, 6, 7, 8, 
@@ -275,6 +277,7 @@ public class PA4aTestCase extends TestCase {
 		_test(a, String.join("%n", msg));
 	}
 	
+	@Test
 	public void testProgram() {
 		_test(new String[] {}, ERR_USAGE);
 		_test(new String[] {"foo"}, ERR_USAGE);

@@ -1,20 +1,21 @@
 
 package edu.wit.cs.comp1050.tests;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.security.Permission;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.*;
 
 import edu.wit.cs.comp1050.PA4b;
 import edu.wit.cs.comp1050.Point2D;
 import edu.wit.cs.comp1050.Rectangle;
 import edu.wit.cs.comp1050.Shape2D;
 import edu.wit.cs.comp1050.Triangle;
-import junit.framework.TestCase;
 
-public class PA4bTestCase extends TestCase {
+public class PA4bTestCase {
 	
 	private static final String ERR_USAGE = "Please supply correct inputs: color x1 y1 x2 y2 x3 y3";
 	
@@ -33,18 +34,16 @@ public class PA4bTestCase extends TestCase {
         public void checkExit(int status) { super.checkExit(status); throw new ExitException(); }
     }
 	
-	@Override
-    protected void setUp() throws Exception 
+	@BeforeEach
+    public void setUp() throws Exception 
     {
-        super.setUp();
         System.setSecurityManager(new NoExitSecurityManager());
     }
 	
-	@Override
+	@AfterEach
     protected void tearDown() throws Exception 
     {
         System.setSecurityManager(null);
-        super.tearDown();
     }
 	
 	private void _test(String[] a, String msg) {
@@ -97,7 +96,7 @@ public class PA4bTestCase extends TestCase {
 		assertEquals(eS, r.toString());
 		assertEquals(eA, r.getArea(), Shape2D.THRESH);
 		assertEquals(eP, r.getPerimeter(), Shape2D.THRESH);
-		Assert.assertArrayEquals(vE, r.getVertices());
+		assertArrayEquals(vE, r.getVertices());
 		assertEquals(cE, r.getCenter());
 		
 		assertEquals(llE, r.getLowerLeft());
@@ -144,7 +143,7 @@ public class PA4bTestCase extends TestCase {
 		assertEquals(eA, t.getArea(), Shape2D.THRESH);
 		assertEquals(eP, t.getPerimeter(), Shape2D.THRESH);
 		assertEquals(eS, t.toString());
-		Assert.assertArrayEquals(eV, t.getVertices());
+		assertArrayEquals(eV, t.getVertices());
 		assertEquals(eC, t.getCenter());
 		
 		assertEquals(eAABB, t.getAxisAlignedBoundingBox());
@@ -204,6 +203,7 @@ public class PA4bTestCase extends TestCase {
 		assertEquals(String.format(String.join("%n", csv)), result);
 	}
 	
+	@Test
 	public void testShape2D() {
 		assertEquals(1.0E-5, Shape2D.THRESH, 1.0E-10);
 		
@@ -237,7 +237,8 @@ public class PA4bTestCase extends TestCase {
 			assertEquals(d, p2.distanceTo(p1), Shape2D.THRESH);
 		}
 	}
-	
+
+    @Test
 	public void testPoint2D() {
 		final Point2D origin = _testPoint2D(0., 0., "(0.000, 0.000)");
 		final Point2D o1 = _testPoint2D(0, Shape2D.THRESH/10., "(0.000, 0.000)");
@@ -300,7 +301,8 @@ public class PA4bTestCase extends TestCase {
 		_testPoint2D(12., 9., "(12.000, 9.000)");
 		_testPoint2D(-1./3., 10./3., "(-0.333, 3.333)");
 	}
-	
+
+    @Test
 	public void testRectangle() {
 		final Point2D origin = _testPoint2D(0., 0., "(0.000, 0.000)");
 		final Point2D p_1_1 = _testPoint2D(-1., -1., "(-1.000, -1.000)");
@@ -349,7 +351,8 @@ public class PA4bTestCase extends TestCase {
 			"Yellow Rectangle @ ((-2.000, 0.000), (-2.000, 5.000), (1.000, 5.000), (1.000, 0.000)): center=(-0.500, 2.500), perimeter=16.000, area=15.000", 
 			new Point2D[] {p_20, p_25, p15, p10}, p_05205, p_20, p15);
 	}
-	
+
+    @Test
 	public void testTriangle() {
 		final Point2D origin = _testPoint2D(0., 0., "(0.000, 0.000)");
 		final Point2D p_20 = _testPoint2D(-2., 0., "(-2.000, 0.000)");
@@ -380,7 +383,8 @@ public class PA4bTestCase extends TestCase {
 			"Teal Triangle", "center=(-0.333, 3.333), perimeter=13.484, area=7.500", 
 			pC2, r2);
 	}
-	
+
+    @Test
 	public void testCSV() {
 		_testCSV(new Shape2D[] {}, new String[] {});
 		
@@ -440,7 +444,8 @@ public class PA4bTestCase extends TestCase {
 	private void _testProgram(String[] a, String[] msg) {
 		_test(a, String.format(String.join("%n", msg)));
 	}
-	
+
+    @Test
 	public void testProgram() {
 		_test(new String[] {}, ERR_USAGE);
 		_test(new String[] {"Blue"}, ERR_USAGE);

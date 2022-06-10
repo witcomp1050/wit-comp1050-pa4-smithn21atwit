@@ -1,6 +1,8 @@
 
 package edu.wit.cs.comp1050.tests;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -8,12 +10,11 @@ import java.security.Permission;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.*;
 
 import edu.wit.cs.comp1050.PA4c;
-import junit.framework.TestCase;
 
-public class PA4cTestCase extends TestCase {
+public class PA4cTestCase {
 	
 	@SuppressWarnings("serial")
 	private static class ExitException extends SecurityException {}
@@ -30,18 +31,16 @@ public class PA4cTestCase extends TestCase {
         public void checkExit(int status) { super.checkExit(status); throw new ExitException(); }
     }
 	
-	@Override
-    protected void setUp() throws Exception 
+	@BeforeEach
+    public void setUp() throws Exception 
     {
-        super.setUp();
         System.setSecurityManager(new NoExitSecurityManager());
     }
 	
-	@Override
-    protected void tearDown() throws Exception 
+	@AfterEach
+    public void tearDown() throws Exception 
     {
         System.setSecurityManager(null);
-        super.tearDown();
     }
 	
 	private void _test(String[] values, String msg) {
@@ -73,13 +72,14 @@ public class PA4cTestCase extends TestCase {
 		Integer[] a = new Integer[list.size()];
 		list.toArray(a);
 		
-		Assert.assertArrayEquals(expected, a);
+		assertArrayEquals(expected, a);
 	}
 	
 	private void _testGood(String[] values, String result) {
 		_test(values, String.format("The distinct integer(s): %s", result));
 	}
 	
+	@Test
 	public void testMethod() {
 		_testMethod(new ArrayList<Integer>(), new Integer[] {});
 		
@@ -117,7 +117,8 @@ public class PA4cTestCase extends TestCase {
 			5, 0, 0, 0, 9, 3, 0, 9, 8, 6, 7, 5)), 
 			new Integer[] {8, 6, 7, 5, 3, 0, 9});
 	}
-	
+
+    @Test
 	public void testProgram() {
 		_test(new String[] {}, "No values entered.");
 		
